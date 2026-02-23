@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SmallHero from "../../components/SmallHero.astro";
+import FeaturedPost from "../../components/FeaturedPost.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+
+posts.sort((a: any, b: any) => b.slug.localeCompare(a.slug));
+
+const featured = posts[0];
+const others = posts.slice(1);
+---
+
+<BaseLayout title="Journal">
+
+  <SmallHero image="/split.jpg" />
+
+  <!-- Wrapper added here -->
+  <section class="blog-wrapper">
+
+    <section class="blog-intro">
+      <div class="bridge-ornament">
+        <img src="/divider.png" alt="" />
+      </div>
+      <h1>Macedonexus Letters</h1>
+      <p>
+        Reflective texts exploring heritage, cultural exchange,
+        identity, and connectivity.
+      </p>
+    </section>
+
+    {featured && (
+      <FeaturedPost
+        image={featured.data.image}
+        title={featured.data.title}
+        excerpt="Click to read the full reflection."
+        slug={featured.slug}
+      />
+    )}
+
+  </section>
+
+  <section class="recent-posts">
+    <h2>Recent Articles</h2>
+
+    <div class="blog-grid">
+      {others.map((post: any) => (
+        <BlogCard
+          image={post.data.image}
+          title={post.data.title}
+          excerpt="Read more..."
+          slug={post.slug}
+        />
+      ))}
+    </div>
+  </section>
+
+</BaseLayout>

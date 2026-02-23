@@ -1,0 +1,23 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  bio: string;
+  icon: string;
+}
+
+const { name, title, bio, icon } = Astro.props;
+---
+
+<div class="team-member">
+  <div class="team-symbol">
+    <img src={icon} alt={`${name} symbol`} />
+  </div>
+
+  <h3 class="team-name">{name}</h3>
+  <p class="team-role">{title}</p>
+
+  <div class="team-separator"></div>
+
+  <p class="team-bio">{bio}</p>
+</div>

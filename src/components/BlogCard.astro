@@ -1,0 +1,13 @@
+---
+const { image, title, excerpt, slug } = Astro.props;
+---
+
+<a href={`/blog/${slug}`} class="blog-card">
+  <img src={image} alt={title} />
+
+  <div class="blog-card-content">
+    <h3>{title}</h3>
+    <p>{excerpt}</p>
+    <span class="read-more">Read More →</span>
+  </div>
+</a>

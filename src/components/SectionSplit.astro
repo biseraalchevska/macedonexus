@@ -1,0 +1,14 @@
+---
+const { title, text, image, className = "" } = Astro.props;
+---
+
+<section class={`section-split ${className}`}>
+  <div class="split-text">
+    <h2>{title}</h2>
+    <p>{text}</p>
+  </div>
+
+  <div class="split-image">
+    <img src={image} alt={title} />
+  </div>
+</section>

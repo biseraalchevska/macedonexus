@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SmallHero from "../../components/SmallHero.astro";
+
+export async function getStaticPaths() {
+  return [
+    { params: { slug: "translation" } },
+    { params: { slug: "language" } },
+    { params: { slug: "guides" } },
+    { params: { slug: "genealogy" } },
+    { params: { slug: "medical" } },
+    { params: { slug: "citizenship" } },
+  ];
+}
+
+const slug = Astro.params.slug;
+
+
+const services = {
+  translation: {
+    title: "Translation Services",
+    image: "/mac-jewlery.png",
+    description: "Certified Macedonian ↔ Turkish translations for legal, medical, and personal documentation.",
+    content: `We provide certified translation services between Macedonian and Turkish.
+
+      Our services include:
+      • Legal and administrative documents 
+      • Personal and family documents 
+      • Medical documentation
+      • Cultural and historical texts
+      • Personal documents
+
+      All translations are handled with confidentiality, and are carried out by certified translators with native-level proficiency.
+    `
+  },
+
+  language: {
+    title: "Language Lessons",
+    image: "/mac-jewlery.png",
+    description: "Online Turkish and Macedonian lessons tailored to your needs.",
+    content: `Our private online lessons focus on real-life communication. The service includes both Turkish for Macedonian speakers and Macedonian for Turkish speakers.
+
+      Lessons are tailored to:
+      • Beginners
+      • Migration preparation
+      • Business needs
+      • Family communication
+
+      Each program is personalized and taught by a certified instructor with strong cultural understanding.
+    `
+  },
+
+  guides: {
+    title: "Guided Cultural Experiences",
+    image: "/mac-nat2.jpg",
+    description: "Private and small group guided cultural tours in Macedonia.",
+    content: `Experience Macedonia beyond tourism.
+      Private and small group guided cultural tours with customized itineraries, focusing on:
+      • History, nature and heritage
+      • Local memory
+      • Cultural immersion experiences
+      • Ancestral visits
+
+      These are slow, human-centered experiences designed to understand place beyond tourism.`
+  },
+
+  genealogy: {
+    title: "Genealogy & Family History",
+    image: "/split.jpg",
+    description: "Reconnect with your family roots.",
+    content: `Designed especially for diaspora families seeking to reconnect with their roots.
+    Macedonexus offers support with:
+    • Family record tracing
+    • Oral history interpretation
+    • Cultural context for ancestry
+    • Archive research
+    `
+  },
+
+  medical: {
+    title: "Medical Care Support & Coordination (Turkey)",
+    image: "/services-hero.png",
+    description: "Assistance with medical travel and coordination in Turkey.",
+    content: `Macedonexus provides support for individuals and families seeking medical care in Turkey. 
+      Services include:
+      • Identifying appropriate doctors and hospitals
+      • Coordinating appointments
+      • Arranging accommodation
+      • Translation during appointments
+      • Ensuring clear communication throughout the process
+
+    All medical consultations and treatments are carried out exclusively by licensed healthcare professionals.`
+  },
+
+  citizenship: {
+    title: "Citizenship & Administrative Support",
+    image: "/services-hero.png",
+    description: "Support navigating citizenship and administrative processes.",
+    content: `Macedonexus supports Turkish citizens applying for Macedonian citizenship or residency by providing:
+    • Certified document translation
+    • Assistance with application preparation
+    • Guidance through administrative procedures
+    • Support with submission to the appropriate institutions
+
+    Final decisions remain the responsibility of official state authorities.    `
+  }
+};
+
+if (!slug || !(slug in services)) {
+  throw new Error("Service not found");
+}
+
+const service = services[slug as keyof typeof services];
+
+---
+
+<BaseLayout title={service.title}>
+    <main class="service-main">
+      <section class="service-split">
+  
+        <div class="service-text">
+          <h1>{service.title}</h1>
+          <h2>{service.description}</h2>
+          <p>{service.content}</p>
+  
+          <div class="service-buttons">
+            <a href="/services" class="btn-outline">
+              Back to Services
+            </a>
+  
+            <a href="/contact?service={slug}" class="btn-primary">
+              Book a {service.title} Appointment
+            </a>
+          </div>
+        </div>
+  
+        <div class="service-slider">
+          <img src={service.image} class="slide active" />
+          <img src="/mac-nat.jpg" class="slide" />
+          <img src="/mac-wear.jpg" class="slide" />
+          <img src="/mac-nat3.jpg" class="slide" />
+          <img src="/services-hero.png" class="slide" />
+          <img src="/mac-patt2.jpg" class="slide" />
+
+        </div>
+  
+      </section>
+    </main>
+  
+    <script is:inline>
+        const slides = document.querySelectorAll(".slide");
+        let current = 0;
+      
+
+      
+        setInterval(() => {
+          slides[current].classList.remove("active");
+          current = (current + 1) % slides.length;
+          slides[current].classList.add("active");
+        }, 5000);
+      </script>
+      
+  </BaseLayout>
+  

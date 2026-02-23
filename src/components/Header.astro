@@ -1,0 +1,27 @@
+---
+const links = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Partner With Us", href: "/partner" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact", href: "/contact" },
+];
+---
+
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="/" class="logo">
+      <img src="/macedoninexu_logo_final_symbol.png" alt="Macedonexus Logo" />
+    </a>
+
+    <nav class="nav">
+      {links.map(link => (
+        <a href={link.href}>{link.name}</a>
+      ))}
+    </nav>
+
+  </div>
+</header>
+

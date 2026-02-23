@@ -1,0 +1,17 @@
+---
+const { title, subtitle, description, ctaText, ctaLink, image, className ="" } = Astro.props;
+---
+
+<section
+  class={`small-hero ${className}`}
+  style={`background-image: url(${image});`}
+>
+  <div class="small-hero-overlay"></div>
+
+  <div class="small-hero-content">
+    <div class="small-hero-text">
+      <h1>{title}</h1>
+      <p class="small-subtitle">{subtitle}</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SmallHero from "../components/SmallHero.astro";
+---
+
+<BaseLayout title="Contact Us">
+
+  <SmallHero image="/about.png" />
+
+  <section class="contact-intro">
+    <div class="contact-inner">
+      <h1>Contact Us</h1>
+      <p>
+        Get in touch on our social media, subscribe to our newsletter,
+        or send us a message directly.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact-methods">
+    <div class="methods-grid">
+
+      <div class="method-card">
+        <div class="method-icon"></div>
+        <h3>Find us on Instagram:</h3>
+        <h3>@macedonexus_</h3>
+        <p>Follow our cultural updates and community stories.</p>
+      </div>
+
+      <div class="method-card">
+        <div class="method-icon"></div>
+        <h3>Text us on WhatsApp:</h3>
+        <h3>+38975338204</h3>
+        <p>Reach out directly for quick inquiries and support.</p>
+      </div>
+
+      <div class="method-card">
+        <div class="method-icon"></div>
+        <h3>Send us an Email:</h3>
+        <h3>info@macedonexus.com</h3>
+        <p>Send us detailed inquiries regarding services or partnerships.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="contact-form-section">
+    <div class="form-inner">
+      <h2>Send a Message</h2>
+
+      <form class="contact-form">
+        <input type="text" placeholder="Name" required />
+        <input type="email" placeholder="Email" required />
+        <textarea placeholder="Your message..." rows="6" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+
+    </div>
+  </section>
+
+</BaseLayout>

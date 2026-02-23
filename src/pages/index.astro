@@ -1,11 +1,39 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import MissionSection from "../components/MissionSection.astro";
+import Pillars from "../components/Pillars.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Macedonexus">
+
+  <Hero
+    title="MACEDONEXUS"
+    subtitle="A living bridge between cultures and borders."
+    image="/heroimg.png"
+    ctaText="LEARN MORE"
+    ctaLink="/about"
+  />
+  <MissionSection
+  text="Macedonexus exists to reconnect individuals and institutions with their cultural origins while facilitating meaningful global opportunities."
+  buttonText="Learn About Our Work"
+  buttonLink="/services"
+/>
+<section class="bridge">
+	<div class="bridge-inner">
+	  <h2>
+		Bridging continents. Preserving identity.
+		<br />
+		Creating opportunity.
+	  </h2>
+  
+	  <div class="bridge-ornament">
+		<img src="/divider.png" alt="" />
+	  </div>
+	</div>
+  </section>
+  <Pillars/>
+
+
+</BaseLayout>

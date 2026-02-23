@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SmallHero from "../../components/SmallHero.astro";
+import ServiceCard from "../../components/ServiceCard.astro";
+---
+
+<BaseLayout title="Services">
+   <SmallHero 
+  className="blog-variant"
+  image="/ohrid.png" /> 
+
+    <section class="contact-intro">
+        <div class="contact-inner">
+          <h1>Our Services</h1>
+          <p>
+            Macedonexus offers thoughtful, human-centered services designed to reconnect people with heritage, language, and meaningful cross-border opportunities.
+          </p>
+        </div>
+      </section>
+
+    <section class="services-section">
+
+            <div class="services-grid">
+
+        <ServiceCard
+        icon="/book.png"
+        title="Translation Services"
+        description="Certified Macedonian ↔ Turkish translations for legal, medical, personal and cultural documentation."
+        link="/services/translation"
+        />
+    
+        <ServiceCard
+        icon="/lessons.png"
+        title="Language Lessons"
+        description="Online Turkish and Macedonian lessons tailored for beginners, migration, work and family needs."
+        link="/services/language"
+        />
+
+        <ServiceCard
+        icon="/mountains.png"
+        title="Guided Cultural Experiences"
+        description="Guided cultural tours in Macedonia, designed to understand place beyond tourism."
+        link="/services/guides"
+        />
+
+        <ServiceCard
+        icon="/family_tree.png"
+        title="Genealogy & Family History"
+        description="A service designed especially for diaspora families seeking to reconnect with their roots."
+        link="/services/genealogy"
+        />
+
+        <ServiceCard
+        icon="/hospital.png
+        "
+        title="Medical Care Support & Coordination (Turkey)"
+        description="Macedonexus provides support for individuals and families seeking medical care in Turkey."
+        link="/services/medical"
+        />
+
+        <ServiceCard
+        icon="/citizenship.png"
+        title="Citizenship & Administrative Support"
+        description="A servivce providing support for Turkish citizens applying for Macedonian citizenship or residency."
+        link="/services/citizenship"
+        />
+    </div> 
+    </section>
+
+</BaseLayout>
+
