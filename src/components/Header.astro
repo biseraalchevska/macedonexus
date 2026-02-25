@@ -16,6 +16,12 @@ const links = [
       <img src="/macedoninexu_logo_final_symbol.png" alt="Macedonexus Logo" />
     </a>
 
+    <button class="burger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
     <nav class="nav">
       {links.map(link => (
         <a href={link.href}>{link.name}</a>
@@ -25,3 +31,16 @@ const links = [
   </div>
 </header>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav');
+
+    if (!burger || !nav) return;
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      nav.classList.toggle('open');
+    });
+  });
+</script>
