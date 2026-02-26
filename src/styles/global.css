@@ -1778,3 +1778,75 @@ body {
 .burger.active span:nth-child(3) {
   transform: rotate(-45deg) translate(6px,-6px);
 }
+
+/* mobile */
+
+@media (max-width: 768px) {
+  .hero {
+    height: 90vh;
+    background-size: cover;
+  }
+  
+  .hero h1 {
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    padding: 0 1.5rem;
+  }
+  
+  .hero-bottom {
+    bottom: 12%;
+  }
+  .mission {
+    padding: 4rem 1.5rem;
+    min-height: auto;
+  }
+  
+  .mission-text {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .mission-btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.6rem;
+  }
+  .bridge {
+    padding: 5rem 1.5rem;
+  }
+  
+  .bridge h2 {
+    font-size: 1.8rem;
+    line-height: 1.5;
+  }
+  .pillar-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+  
+  .pillar:not(:last-child)::after {
+    display: none;
+  }
+  
+  .pillar p {
+    font-size: 1.1rem;
+  }
+  .site-header {
+    padding: 0.5rem 1.5rem;
+  }
+  section {
+    overflow-x: hidden;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  .btn-primary,
+.mission-btn {
+  min-height: 44px;
+}
+
+}
