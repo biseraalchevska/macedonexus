@@ -31,6 +31,7 @@ import SmallHero from "../components/SmallHero.astro";
         <div class="method-icon"></div>
         <h3>Text us on WhatsApp:</h3>
         <h3>+38975338204</h3>
+        <h3>+38971491612</h3>
         <p>Reach out directly for quick inquiries and support.</p>
       </div>
 
@@ -47,14 +48,31 @@ import SmallHero from "../components/SmallHero.astro";
   <section class="contact-form-section">
     <div class="form-inner">
       <h2>Send a Message</h2>
-
-      <form class="contact-form">
-        <input type="text" placeholder="Name" required />
-        <input type="email" placeholder="Email" required />
-        <textarea placeholder="Your message..." rows="6" required></textarea>
+  
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        data-form="ajax"
+        class="contact-form"
+      >
+  
+        <input type="hidden" name="form-name" value="contact" />
+  
+        <input name="name" type="text" placeholder="Name" required />
+  
+        <input name="email" type="email" placeholder="Email" required />
+  
+        <textarea
+          name="message"
+          placeholder="Your message..."
+          rows="6"
+          required
+        ></textarea>
+  
         <button type="submit">Send</button>
+  
       </form>
-
     </div>
   </section>
 

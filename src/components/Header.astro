@@ -32,15 +32,27 @@ const links = [
 </header>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav');
-
-    if (!burger || !nav) return;
-
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('active');
-      nav.classList.toggle('open');
-    });
+  const burger = document.querySelector('.burger');
+  const nav = document.querySelector('.nav');
+  
+  burger?.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    nav?.classList.toggle('open');
+  
+    document.body.classList.toggle('menu-open');
   });
-</script>
+  document.querySelectorAll('.nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav?.classList.remove('open');
+    burger?.classList.remove('active');
+    document.body.classList.remove('menu-open');
+  });
+});
+window.addEventListener('scroll', () => {
+  if (nav?.classList.contains('open')) {
+    nav.classList.remove('open');
+    burger?.classList.remove('active');
+    document.body.classList.remove('menu-open');
+  }
+});
+  </script>

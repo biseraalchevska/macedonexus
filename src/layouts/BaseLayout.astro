@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
-const { title } = Astro.props;
+const { title, pageClass = "" } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -10,6 +10,7 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <!-- <link rel="stylesheet" href="/src/styles/global.css" /> -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -18,11 +19,55 @@ const { title } = Astro.props;
   <body>
     <Header />
 
-    <main>
+    <main class={pageClass}>
       <slot />
     </main>
 
+
     <Footer />
+    <div id="success-modal" class="modal">
+      <div class="modal-box">
+        <p>Your message has been sent successfully!</p>
+        <button id="modal-ok">OK</button>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+      
+        const forms = document.querySelectorAll('[data-form="ajax"]');
+        const modal = document.getElementById("success-modal");
+        const okBtn = document.getElementById("modal-ok");
+      
+        forms.forEach(form => {
+      
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+      
+            const formData = new FormData(form);
+      
+            try {
+              await fetch("/", {
+                method: "POST",
+                headers: { "Accept": "application/json" },
+                body: formData
+              });
+      
+              modal.classList.add("show");
+      
+            } catch (err) {
+              alert("Submission failed. Please try again.");
+            }
+          });
+      
+        });
+      
+        okBtn.addEventListener("click", () => {
+          modal.classList.remove("show");
+          window.location.reload();
+        });
+      
+      });
+      </script>
 
   </body>
 </html>

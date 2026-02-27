@@ -15,41 +15,69 @@ image="/woodcarv.png"
 title="Partner With Us"
 className="partner-variant"
 text="Macedonexus partners with individuals and organizations who care about people, culture and continuity. Our approach is personal, careful and long-term — because meaningful partnerships are built on understanding, not transactions."
-image="/ohrid.png"
+image="/mac-wear.jpg"
 />
 </div>
 <section class="consultation">
     <div class="consultation-inner">
       <h2>Request a Consultation</h2>
-      <div class="bridge-ornament">
-        <img src="/divider.png" alt="" />
-      </div>
   
       <p class="consultation-sub">
         Tell us about your organization and how you’d like to collaborate.
         We will respond within 48 hours.
       </p>
   
-      <form class="consultation-form">
-        <input type="text" placeholder="Full Name" required />
-        <input type="text" placeholder="Organization / Company" />
-        <input type="email" placeholder="Email Address" required />
-  
-        <select>
-          <option>Select Partnership Type</option>
-          <option>Cultural Collaboration</option>
-          <option>Language Education</option>
-          <option>Medical Coordination</option>
-          <option>Genealogy & Diaspora Projects</option>
-          <option>Other</option>
-        </select>
-  
-        <textarea placeholder="Send us a message!" rows="5"></textarea>
-  
-        <button type="submit" class="btn-primary">
-          Submit Request
-        </button>
-      </form>
+      <form
+      name="consultation"
+      method="POST"
+      data-netlify="true"
+      data-form="ajax"
+      class="consultation-form"
+    >
+    
+      <input type="hidden" name="form-name" value="consultation" />
+    
+      <input
+        name="full-name"
+        type="text"
+        placeholder="Full Name"
+        required
+      />
+    
+      <input
+        name="organization"
+        type="text"
+        placeholder="Organization / Company"
+      />
+    
+      <input
+        name="email"
+        type="email"
+        placeholder="Email Address"
+        required
+      />
+    
+      <select name="partnership-type" required>
+        <option value="">Select Partnership Type</option>
+        <option>Cultural Collaboration</option>
+        <option>Language Education</option>
+        <option>Medical Coordination</option>
+        <option>Genealogy & Diaspora Projects</option>
+        <option>Other</option>
+      </select>
+    
+      <textarea
+        name="message"
+        placeholder="Send us a message!"
+        rows="5"
+        required
+      ></textarea>
+    
+      <button type="submit" class="btn-primary">
+        Submit Request
+      </button>
+    
+    </form>
     </div>
   </section>
   

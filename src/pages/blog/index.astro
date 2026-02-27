@@ -13,47 +13,54 @@ const featured = posts[0];
 const others = posts.slice(1);
 ---
 
-<BaseLayout title="Journal">
-
+<BaseLayout title="Blog" pageClass="journal-page">
   <SmallHero image="/split.jpg" />
 
-  <section class="blog-wrapper">
-
-    <section class="blog-intro">
-      <div class="bridge-ornament">
-        <img src="/divider.png" alt="" />
-      </div>
+  <section class="journal-intro">
+    <div class="journal-inner">
       <h1>Macedonexus Letters</h1>
-      <p>
-        Reflective texts exploring heritage, cultural exchange,
-        identity, and connectivity.
-      </p>
-    </section>
 
-    {featured && (
+      <p>
+        Reflective writings exploring heritage,
+        movement, identity, and cultural continuity.
+      </p>
+    </div>
+  </section>
+
+
+  {featured && (
+    <section class="journal-featured">
       <FeaturedPost
         image={featured.data.image}
         title={featured.data.title}
-        excerpt="Click to read the full reflection."
+        excerpt="Read the full reflection."
         slug={featured.slug}
       />
-    )}
+    </section>
+  )}
 
-  </section>
 
-  <!-- <section class="recent-posts">
-    <h2>Recent Articles</h2>
+  {others.length > 0 && (
+    <section class="journal-list">
+      <div class="journal-inner">
 
-    <div class="blog-grid">
-      {others.map((post: any) => (
-        <BlogCard
-          image={post.data.image}
-          title={post.data.title}
-          excerpt="Read more..."
-          slug={post.slug}
-        />
-      ))}
-    </div>
-  </section> -->
+        <h2 class="journal-section-title">
+          Latest Writings
+        </h2>
+
+        <div class="journal-grid">
+          {others.map((post: any) => (
+            <BlogCard
+              image={post.data.image}
+              title={post.data.title}
+              excerpt={post.data.excerpt ?? "Read more"}
+              slug={post.slug}
+            />
+          ))}
+        </div>
+
+      </div>
+    </section>
+  )}
 
 </BaseLayout>

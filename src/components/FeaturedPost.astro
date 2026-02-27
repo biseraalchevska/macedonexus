@@ -2,20 +2,30 @@
 const { image, title, excerpt, slug } = Astro.props;
 ---
 
-<a href={`/blog/${slug}`} class="featured-post">
-  <div class="featured-inner">
+<section class="featured-post">
 
-    <div class="featured-image">
-      <img src={image} alt={title} />
-    </div>
+  <div class="featured-container">
 
-    <div class="featured-content">
-      <h2>{title}</h2>
-      <p>{excerpt}</p>
-      <span class="read-more">Read More →</span>
+    <div class="featured-inner">
+
+      <div class="featured-image">
+        <img src={image} alt={title} />
+      </div>
+
+      <div class="featured-content">
+        <h2>
+          <a href={`/blog/${slug}`}>{title}</a>
+        </h2>
+
+        <p>{excerpt}</p>
+
+        <a href={`/blog/${slug}`} class="read-more">
+          Read More →
+        </a>
+      </div>
+
     </div>
 
   </div>
-</a>
 
-
+</section>

@@ -18,9 +18,10 @@ const { Content } = await post.render();
 
 <BaseLayout title={post.data.title}>
   <SmallHero image={post.data.image} />
-
+<section class="blog-post-wrapper">
   <article class="blog-post">
     <h1>{post.data.title}</h1>
     <Content />
   </article>
+  </section>
 </BaseLayout>
