@@ -1,11 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SmallHero from "../components/SmallHero.astro";
+import aboutHero from "../assets/about.png";
 ---
 
 <BaseLayout title="Contact Us">
 
-  <SmallHero image="/about.png" />
+  <SmallHero image={aboutHero} />
 
   <section class="contact-intro">
     <div class="contact-inner">
@@ -17,7 +18,7 @@ import SmallHero from "../components/SmallHero.astro";
     </div>
   </section>
 
-  <section class="contact-methods">
+  <!-- <section class="contact-methods">
     <div class="methods-grid">
 
       <div class="method-card">
@@ -27,11 +28,12 @@ import SmallHero from "../components/SmallHero.astro";
         <p>Follow our cultural updates and community stories.</p>
       </div>
 
+
       <div class="method-card">
         <div class="method-icon"></div>
         <h3>Text us on WhatsApp:</h3>
-        <h3>+38975338204</h3>
-        <h3>+38971491612</h3>
+        <h3>+90 538 287 1810</h3>
+        <h3>+389 71 491 612</h3>
         <p>Reach out directly for quick inquiries and support.</p>
       </div>
 
@@ -42,6 +44,33 @@ import SmallHero from "../components/SmallHero.astro";
         <p>Send us detailed inquiries regarding services or partnerships.</p>
       </div>
 
+    </div>
+  </section> -->
+  <section class="contact-methods">
+    <div class="methods-grid">
+  
+      <a href="https://instagram.com/macedonexus_" target="_blank" rel="noopener" class="method-card">
+        <div class="method-icon"></div>
+        <h3>Find us on Instagram:</h3>
+        <h3>@macedonexus_</h3>
+        <p>Follow our cultural updates and community stories.</p>
+      </a>
+  
+      <a href="https://wa.me/905382871810" target="_blank" class="method-card">
+        <div class="method-icon"></div>
+        <h3>Text us on WhatsApp:</h3>
+        <h3>+90 538 287 1810</h3>
+        <h3>+389 71 491 612</h3>
+        <p>Reach out directly for quick inquiries and support.</p>
+      </a>
+  
+      <a href="mailto:info@macedonexus.com" class="method-card">
+        <div class="method-icon"></div>
+        <h3>Send us an Email:</h3>
+        <h3>info@macedonexus.com</h3>
+        <p>Send us detailed inquiries regarding services or partnerships.</p>
+      </a>
+  
     </div>
   </section>
 

@@ -1,17 +1,25 @@
 ---
+import { Image } from "astro:assets";
 const { title, subtitle, description, ctaText, ctaLink, image } = Astro.props;
 ---
 
 <section class="hero">
-    <div class="hero-overlay"></div>
-  
-    <div class="hero-top">
-      <h1>{title}</h1>
-    </div>
-  
-    <div class="hero-bottom">
-      <p class="subtitle">{subtitle}</p>
-      <a href={ctaLink} class="btn-primary">{ctaText}</a>
-    </div>
-  </section>
-  
+  <Image
+  src={image}
+  alt={title}
+  class="hero-bg"
+  width={1600}
+  priority
+/>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-top">
+    <h1>{title}</h1>
+  </div>
+
+  <div class="hero-bottom">
+    <p class="subtitle">{subtitle}</p>
+    <a href={ctaLink} class="btn-primary">{ctaText}</a>
+  </div>
+</section>

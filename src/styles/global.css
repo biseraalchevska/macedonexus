@@ -41,7 +41,6 @@ html, body {
     min-height: 100vh;
     width: 100%;
   
-    background-image: url("/heroimg.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -120,6 +119,18 @@ html, body {
   .btn-primary:hover {
     background-color: #a62828;
   }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+  
+    width: 100%;
+    height: 100%;
+  
+    object-fit: cover;
+    object-position: center;
+  
+    z-index: -2;
+  }
   
   @keyframes fadeUp {
     from {
@@ -197,23 +208,39 @@ html, body {
 /* landing bridge */
 
 .bridge {
-    background: linear-gradient(
-        rgba(10, 20, 35, 0.6),
-        rgba(10, 20, 35, 0.6)
-      ),
-      url("/mac-jewlery.png");
-  
-    background-size: cover;
-    background-position: center;
-    padding: 7rem 2rem;
-    color: white;
-    text-align: center;
-  }
-  
-  .bridge-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+  position: relative;
+  padding: 7rem 2rem;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+}
+
+.bridge-bg {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  z-index: -2;
+}
+
+.bridge-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 20, 35, 0.6);
+  z-index: -1;
+}
+
+.bridge-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
   
   .bridge h2 {
     font-family: 'Cormorant Garamond', serif;
@@ -295,21 +322,26 @@ html, body {
   }
   
   /* small hero */
-.small-hero {
+  .small-hero {
     position: relative;
     height: 40vh;
     padding-top: var(--header-height);
-
-    background-size: cover;
-    background-position: center 50%;
-    background-repeat: no-repeat;
-  
+    overflow: hidden;
     color: white;
   }
-
-  .small-hero img {
-    display: block;
+  .small-hero-bg {
+    position: absolute;
+    inset: 0;
+  
+    width: 100%;
+    height: 100%;
+  
+    object-fit: cover;
+    object-position: center;
+  
+    z-index: -2;
   }
+
     
   
   .small-hero-content {
@@ -343,21 +375,6 @@ html, body {
     object-position: center 50%;
   }
 
-  
-/* ornament */
-.bridge-ornament {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .bridge-ornament img {
-    width: 340px; 
-    height: auto;
-  }
-
-  .team-divider {
-    margin: 6rem 0 3rem;
-  }
   
 .team-title{
     text-align: center;
@@ -491,11 +508,34 @@ html, body {
 .service-link:hover {
   color: black;
 }
+
+/* contact clicable cards */
+.method-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.method-card:hover {
+  transform: translateY(-4px);
+}
       
   /* partner with us */
+  .split-image {
+    height: 100vh;
+    overflow: hidden;
+  }
+  .split-image picture,
+.split-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  .partner-variant .split-image img {
-    object-position: center 50%;
+  .section-split.partner-variant img {
+    object-position: center 65%;
   }
   
   .consultation {
@@ -772,12 +812,11 @@ html, body {
     overflow: hidden;
   }
   
-  .split-image img {
+  /* .split-image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 100%;
-  }
+    height: auto;
+    display: block;
+  } */
   
   .team-section {
     background: #f8f6f2;
@@ -967,6 +1006,7 @@ html, body {
   /* slug for services  */
 .service-main {
   min-height: 100vh;
+  overflow: hidden;
   display: flex;
 }
 
@@ -1056,8 +1096,9 @@ html, body {
 .service-slider {
   position: relative;
   overflow: hidden;
-  height: 100%;
+  min-height: 100vh;
   border-left: 1px solid rgba(0, 0, 0, 0.05);
+  
 }
 
 .service-slider img {

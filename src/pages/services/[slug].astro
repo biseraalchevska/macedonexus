@@ -1,6 +1,17 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import SmallHero from "../../components/SmallHero.astro";
+
+import { Image } from "astro:assets";
+
+import macJewelry from "../../assets/mac-jewlery.png";
+import mount from "../../assets/mount.jpg";
+import macWear from "../../assets/mac-wear.jpg";
+import nature from "../../assets/nature.jpg";
+import servicesHero from "../../assets/services-hero.png";
+import mout2 from "../../assets/mout2.jpg";
+import macPatt2 from "../../assets/mac-patt2.jpg";
+import view from "../../assets/view.jpg";
+
 
 export async function getStaticPaths() {
   return [
@@ -111,6 +122,16 @@ if (!slug || !(slug in services)) {
 }
 
 const service = services[slug as keyof typeof services];
+const sliderImages = [
+  macJewelry,
+  mount,
+  macWear,
+  nature,
+  servicesHero,
+  mout2,
+  macPatt2,
+  view,
+];
 
 ---
 
@@ -135,16 +156,15 @@ const service = services[slug as keyof typeof services];
         </div>
   
         <div class="service-slider">
-          <img src={service.image} class="slide active" />
-          <img src="/mount.jpg" class="slide" />
-          <img src="/mac-wear.jpg" class="slide" />
-          <img src="/nature.jpg" class="slide" />
-          <img src="/services-hero.png" class="slide" />
-          <img src="/mout2.jpg" class="slide" />
-          <img src="/mac-patt2.jpg" class="slide" />
-          <img src="/view.jpg" class="slide" />
-
-
+          {sliderImages.map((img, i) => (
+            <Image
+              src={img}
+              alt=""
+              class={`slide ${i === 0 ? "active" : ""}`}
+              width={1600}
+              loading={i === 0 ? "eager" : "lazy"}
+            />
+          ))}
         </div>
   
       </section>

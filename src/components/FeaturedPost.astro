@@ -1,15 +1,28 @@
 ---
+import { Image } from "astro:assets";
+
+interface Props {
+  image: any;
+  title: string;
+  excerpt: string;
+  slug: string;
+}
+
 const { image, title, excerpt, slug } = Astro.props;
 ---
 
 <section class="featured-post">
-
   <div class="featured-container">
-
     <div class="featured-inner">
 
       <div class="featured-image">
-        <img src={image} alt={title} />
+        <Image
+          src={image}
+          alt={title}
+          width={1200}
+          sizes="(max-width: 900px) 100vw, 50vw"
+          priority
+        />
       </div>
 
       <div class="featured-content">
@@ -25,7 +38,5 @@ const { image, title, excerpt, slug } = Astro.props;
       </div>
 
     </div>
-
   </div>
-
 </section>

@@ -1,6 +1,7 @@
 ---
 title: "Between Origin and Movement"
-image: "/mac-jewlery.png"
+date: "2026-02-28"
+image: /src/assets/mac-jewlery.png
 ---
 
 Every life begins somewhere. An origin that shapes the first understanding of the world.

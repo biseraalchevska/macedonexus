@@ -1,11 +1,26 @@
 ---
-const { title, subtitle, description, ctaText, ctaLink, image, className ="" } = Astro.props;
+import { Image } from "astro:assets";
+
+const {
+  title,
+  subtitle,
+  description,
+  ctaText,
+  ctaLink,
+  image,
+  className = ""
+} = Astro.props;
 ---
 
-<section
-  class={`small-hero ${className}`}
-  style={`background-image: url(${image});`}
->
+<section class={`small-hero ${className}`}>
+  <Image
+  src={image}
+  alt={title || ""}
+  class="small-hero-bg"
+  width={1400}
+  priority
+/>
+
   <div class="small-hero-overlay"></div>
 
   <div class="small-hero-content">

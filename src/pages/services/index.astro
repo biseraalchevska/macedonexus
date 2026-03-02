@@ -2,12 +2,20 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SmallHero from "../../components/SmallHero.astro";
 import ServiceCard from "../../components/ServiceCard.astro";
+import splitImage from "../../assets/split.jpg";
+import bookIcon from "../../assets/book.png";
+import lessonsIcon from "../../assets/lessons.png";
+import mountainsIcon from "../../assets/mountains.png";
+import familyTreeIcon from "../../assets/family_tree.png";
+import hospitalIcon from "../../assets/hospital.png";
+import citizenshipIcon from "../../assets/citizenship.png";
 ---
 
 <BaseLayout title="Services">
    <SmallHero 
   className="blog-variant"
-  image="/split.jpg" /> 
+  image={splitImage}
+    /> 
 
     <section class="contact-intro">
         <div class="contact-inner">
@@ -23,43 +31,42 @@ import ServiceCard from "../../components/ServiceCard.astro";
             <div class="services-grid">
 
         <ServiceCard
-        icon="/book.png"
+        icon={bookIcon}
         title="Translation Services"
         description="Certified Macedonian ↔ Turkish translations for legal, medical, personal and cultural documentation."
         link="/services/translation"
         />
     
         <ServiceCard
-        icon="/lessons.png"
+        icon={lessonsIcon}
         title="Language Lessons"
         description="Online Turkish and Macedonian lessons tailored for beginners, migration, work and family needs."
         link="/services/language"
         />
 
         <ServiceCard
-        icon="/mountains.png"
+        icon={mountainsIcon}
         title="Guided Cultural Experiences"
         description="Guided cultural tours in Macedonia, designed to understand place beyond tourism."
         link="/services/guides"
         />
 
         <ServiceCard
-        icon="/family_tree.png"
+        icon={familyTreeIcon}
         title="Genealogy & Family History"
         description="A service designed especially for diaspora families seeking to reconnect with their roots."
         link="/services/genealogy"
         />
 
         <ServiceCard
-        icon="/hospital.png
-        "
+        icon={hospitalIcon}
         title="Medical Care Support & Coordination (Turkey)"
         description="Macedonexus provides support for individuals and families seeking medical care in Turkey."
         link="/services/medical"
         />
 
         <ServiceCard
-        icon="/citizenship.png"
+        icon={citizenshipIcon}
         title="Citizenship & Administrative Support"
         description="A service providing support for Turkish citizens applying for Macedonian citizenship or residency."
         link="/services/citizenship"

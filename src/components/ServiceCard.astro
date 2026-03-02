@@ -1,17 +1,26 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
-  icon: string;       
+  icon: ImageMetadata;
   title: string;
   description: string;
   link: string;
 }
 
-const { icon, title, description, link } = Astro.props;
+const { icon, title, description, link } = Astro.props as Props;
 ---
 
 <div class="service-card">
   <div class="service-card-header">
-    <img src={icon} alt="" class="service-icon" />
+    <Image
+      src={icon}
+      alt=""
+      width={240}
+      loading="lazy"
+      class="service-icon"
+    />
     <h3>{title}</h3>
   </div>
 

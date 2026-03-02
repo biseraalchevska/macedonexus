@@ -4,17 +4,19 @@ import SmallHero from "../../components/SmallHero.astro";
 import FeaturedPost from "../../components/FeaturedPost.astro";
 import BlogCard from "../../components/BlogCard.astro";
 import { getCollection } from "astro:content";
+import splitImage from "../../assets/split.jpg";
 
 const posts = await getCollection("blog");
 
-posts.sort((a: any, b: any) => b.slug.localeCompare(a.slug));
-
+posts.sort((a:any, b:any) =>
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
 const featured = posts[0];
 const others = posts.slice(1);
 ---
 
 <BaseLayout title="Blog" pageClass="journal-page">
-  <SmallHero image="/split.jpg" />
+  <SmallHero image={splitImage} />
 
   <section class="journal-intro">
     <div class="journal-inner">
@@ -34,7 +36,7 @@ const others = posts.slice(1);
         image={featured.data.image}
         title={featured.data.title}
         excerpt="Read the full reflection."
-        slug={featured.slug}
+        slug={featured.id}
       />
     </section>
   )}
@@ -49,14 +51,14 @@ const others = posts.slice(1);
         </h2>
 
         <div class="journal-grid">
-          {others.map((post: any) => (
-            <BlogCard
-              image={post.data.image}
-              title={post.data.title}
-              excerpt={post.data.excerpt ?? "Read more"}
-              slug={post.slug}
-            />
-          ))}
+          {others.map((post:any) => (
+  <BlogCard
+    image={post.data.image}
+    title={post.data.title}
+    excerpt={post.data.excerpt ?? "Read more"}
+    slug={post.id}
+  />
+))}
         </div>
 
       </div>

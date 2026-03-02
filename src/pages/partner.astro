@@ -2,20 +2,20 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SmallHero from "../components/SmallHero.astro";
 import SectionSplit from "../components/SectionSplit.astro";
+import woodcarv from "../assets/woodcarv.png";
+import macWear from "../assets/mac-wear.jpg";
 ---
 
 <BaseLayout title="Partner With Us">
   <div class="about-top">
 
-    <SmallHero
-image="/woodcarv.png"
-/>
+    <SmallHero image={woodcarv} />
 
     <SectionSplit
 title="Partner With Us"
 className="partner-variant"
 text="Macedonexus partners with individuals and organizations who care about people, culture and continuity. Our approach is personal, careful and long-term — because meaningful partnerships are built on understanding, not transactions."
-image="/mac-wear.jpg"
+image={macWear}
 />
 </div>
 <section class="consultation">

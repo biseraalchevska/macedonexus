@@ -4,6 +4,9 @@ import Hero from "../components/Hero.astro";
 import MissionSection from "../components/MissionSection.astro";
 import Pillars from "../components/Pillars.astro";
 
+import heroImage from "../assets/heroimg.png";
+import bridgeImage from "../assets/mac-jewlery.png";
+import { Image } from "astro:assets";
 ---
 
 <BaseLayout title="Macedonexus" class="full-width">
@@ -11,7 +14,7 @@ import Pillars from "../components/Pillars.astro";
   <Hero
     title="MACEDONEXUS"
     subtitle="A living bridge between cultures and borders."
-    image="/heroimg.png"
+    image={heroImage}
     ctaText="LEARN MORE"
     ctaLink="/about"
   />
@@ -21,15 +24,24 @@ import Pillars from "../components/Pillars.astro";
   buttonLink="/services"
 />
 <section class="bridge">
-	<div class="bridge-inner">
-	  <h2>
-		Bridging countries. Preserving identity.
-		<br />
-		Creating opportunity.
-	  </h2>
-  
-	</div>
-  </section>
+  <Image
+    src={bridgeImage}
+    alt="Macedonian jewelry"
+    class="bridge-bg"
+    width={1600}
+    loading="lazy"
+  />
+
+  <div class="bridge-overlay"></div>
+
+  <div class="bridge-inner">
+    <h2>
+      Bridging countries. Preserving identity.
+      <br />
+      Creating opportunity.
+    </h2>
+  </div>
+</section>
   <Pillars/>
 
 

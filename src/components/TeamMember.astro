@@ -1,17 +1,25 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
   name: string;
   title: string;
   bio: string;
-  icon: string;
+  icon: ImageMetadata;
 }
 
-const { name, title, bio, icon } = Astro.props;
+const { name, title, bio, icon } = Astro.props as Props;
 ---
 
 <div class="team-member">
   <div class="team-symbol">
-    <img src={icon} alt={`${name} symbol`} />
+    <Image
+      src={icon}
+      alt=""
+      width={240}
+      loading="lazy"
+    />
   </div>
 
   <h3 class="team-name">{name}</h3>

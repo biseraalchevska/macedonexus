@@ -3,6 +3,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import SmallHero from "../components/SmallHero.astro";
 import SectionSplit from "../components/SectionSplit.astro";
 import TeamMember from "../components/TeamMember.astro";
+import aboutHero from "../assets/about.png";
+import splitImage from "../assets/split.jpg";
+
+import artifactIcon from "../assets/artifact.png";
+import compassIcon from "../assets/compass.png";
+import bookIcon from "../assets/book.png";
+import ancestryIcon from "../assets/ancestry.png";
 
 
 ---
@@ -10,7 +17,7 @@ import TeamMember from "../components/TeamMember.astro";
 <BaseLayout title="About Us">
 <div class="about-top">
 <SmallHero
-image="/about.png"
+image={aboutHero}
 />
 <SectionSplit
   title="About Macedonexus"
@@ -18,7 +25,7 @@ image="/about.png"
   movement, exchange and shared histories. It brings together language, memory and
   place to offer thoughtful, human-centered support for individuals, families, and
   communities living across borders."
-  image="/split.jpg"
+  image={splitImage}
 />
 </div>
 
@@ -32,26 +39,28 @@ image="/about.png"
       bio="Cultural interpreter with a background in archaeological materials science. Natali
       focuses on cultural interpretation, identity, heritage and cross-cultural understanding,
       shaping the vision and intellectual direction of Macedonexus."
-      icon="/artifact.png"
+      icon={artifactIcon}
     />
 
     <TeamMember
       name="Zharko"
       title="Translator & Guide"
-      bio="Certified Macedonian-Turkish translator and licensed tour guide. He offers
-      professional translation services, guided cultural experiences in Macedonia and
-      support in navigating medical care in Turkey and administrative procedures related
-      to Macedonian citizenship applications."
-      icon="/compass.png"
+      bio="Certified Macedonian–Turkish translator and licensed tour guide. He offers
+      professional translation services, guided cultural experiences in Macedonia, support
+      in navigating medical care in Turkey, assistance with administrative procedures
+      related to Macedonian citizenship applications, as well as investment and
+      institutional support, including local orientation and facilitation of communication with
+      relevant institutions and trusted local partners."
+      icon={compassIcon}
     />
 
     <TeamMember
       name="Melani"
-      title="Language Instructor"
+      title="Translator & Language Lecturer"
       bio="Certified Macedonian-Turkish translator. She offers language lessons for Turkish and
       Macedonian learners, with a strong emphasis on practical communication and
       cultural context."
-      icon="/book.png"
+      icon={bookIcon}
     />
 
     <TeamMember
@@ -60,7 +69,7 @@ image="/about.png"
       bio="She supports individuals and families in exploring their ancestry through family
       records, oral history and cultural context, with a particular focus on diaspora
       connections and intergenerational memory."
-      icon="/ancestry.png"
+      icon={ancestryIcon}
     />
   </div>
 </section>
