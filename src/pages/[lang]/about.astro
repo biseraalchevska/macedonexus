@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SmallHero from "../../components/SmallHero.astro";
+import SectionSplit from "../../components/SectionSplit.astro";
+import TeamMember from "../../components/TeamMember.astro";
+import aboutHero from "../../assets/about.png";
+import splitImage from "../../assets/split.jpg";
+
+import artifactIcon from "../../assets/artifact.png";
+import compassIcon from "../../assets/compass.png";
+import bookIcon from "../../assets/book.png";
+import ancestryIcon from "../../assets/ancestry.png";
+
+import { getLang } from "../../lib/lang";
+
+import { langs } from "../../lib/staticLangs";
+export async function getStaticPaths() {
+  return langs.map(lang => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang;
+const t = getLang(lang);
+
+---
+
+<BaseLayout title="About Us">
+<div class="about-top">
+<SmallHero
+image={aboutHero}
+/>
+<SectionSplit
+  title={t.about.intro.title}
+  text={t.about.intro.text}
+  image={splitImage}
+/>
+</div>
+
+<section class="team-section">
+  <h1 class="team-title">{t.about.teamTitle}</h1>
+  <div class="team-grid">
+    {t.about.team.map((member:any, i:any) => {
+      const icons = [
+        artifactIcon,
+        compassIcon,
+        bookIcon,
+        ancestryIcon
+      ];
+  
+      return (
+        <TeamMember
+          name={member.name}
+          title={member.role}
+          bio={member.bio}
+          icon={icons[i]}
+        />
+      );
+    })}
+  </div>
+</section>
+
+
+
+</BaseLayout>
+
+

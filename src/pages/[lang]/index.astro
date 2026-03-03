@@ -1,0 +1,60 @@
+---
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import MissionSection from "../../components/MissionSection.astro";
+import Pillars from "../../components/Pillars.astro";
+import { getLang } from "../../lib/lang";
+
+
+import heroImage from "../../assets/heroimg.png";
+import bridgeImage from "../../assets/mac-jewlery.png";
+import { Image } from "astro:assets";
+
+import { langs } from "../../lib/staticLangs";
+export async function getStaticPaths() {
+  return langs.map(lang => ({ params: { lang } }));
+}
+
+
+const { lang } = Astro.params;
+const t = getLang(lang);
+---
+
+<BaseLayout title="Macedonexus" class="full-width">
+
+  <Hero
+    title={t.home.hero.title}
+    subtitle={t.home.hero.subtitle}
+    image={heroImage}
+    ctaText={t.home.hero.cta}
+    ctaLink={`/${lang}/about`}
+  />
+  <MissionSection
+  text={t.home.mission.text}
+  buttonText={t.home.mission.cta}
+  buttonLink="/services"
+/>
+<section class="bridge">
+  <Image
+    src={bridgeImage}
+    alt="Macedonian jewelry"
+    class="bridge-bg"
+    width={1600}
+    loading="lazy"
+    onLoad="this.dataset.loaded='true'"
+  />
+
+  <div class="bridge-overlay"></div>
+
+  <div class="bridge-inner">
+    <h2>
+      {t.home.bridge.line1}
+      <br />
+      {t.home.bridge.line2}
+    </h2>
+  </div>
+</section>
+<Pillars t={t} />
+
+</BaseLayout>

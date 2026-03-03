@@ -1,0 +1,117 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+
+import { langs } from "../../../lib/staticLangs";
+import { getLang } from "../../../lib/lang";
+
+import macJewelry from "../../../assets/mac-jewlery.png";
+import mount from "../../../assets/mount.jpg";
+import macWear from "../../../assets/mac-wear.jpg";
+import nature from "../../../assets/nature.jpg";
+import servicesHero from "../../../assets/services-hero.png";
+import mout2 from "../../../assets/mout2.jpg";
+import macPatt2 from "../../../assets/mac-patt2.jpg";
+import view from "../../../assets/view.jpg";
+
+export async function getStaticPaths() {
+  const paths = [];
+
+  for (const lang of langs) {
+    const t = getLang(lang);
+
+    for (const service of t.services.items) {
+      paths.push({
+        params: {
+          lang,
+          slug: service.slug,
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { lang, slug } = Astro.params;
+const t = getLang(lang);
+
+const service = t.services.items.find(
+  (s:any) => s.slug === slug
+);
+
+if (!service) {
+  throw new Error("Service not found");
+}
+
+const sliderImages = [
+  macJewelry,
+  mount,
+  macWear,
+  nature,
+  servicesHero,
+  mout2,
+  macPatt2,
+  view,
+];
+---
+
+<BaseLayout title={service.title} pageClass="full-width">
+
+<main class="service-main">
+<section class="service-split">
+
+<div class="service-text">
+
+<h1>{service.title}</h1>
+<p>{service.content.intro}</p>
+
+<h3>{service.content.listTitle}</h3>
+
+<ul class="service-list">
+  {service.content.bullets.map((item: string) => (
+    <li>{item}</li>
+  ))}
+</ul>
+
+<p>{service.content.outro}</p>
+
+<div class="service-buttons">
+  <a href={`/${lang}/services`} class="btn-outline">
+    {t.services.back}
+  </a>
+
+  <a href={`/${lang}/contact?service=${slug}`} class="btn-primary">
+    {t.services.book}
+  </a>
+</div>
+
+</div>
+
+<div class="service-slider">
+{sliderImages.map((img, i) => (
+  <Image
+    src={img}
+    alt=""
+    class={`slide ${i === 0 ? "active" : ""}`}
+    width={1600}
+    loading={i === 0 ? "eager" : "lazy"}
+  />
+))}
+</div>
+
+</section>
+</main>
+
+<script is:inline>
+const slides = document.querySelectorAll(".slide");
+let current = 0;
+
+setInterval(() => {
+  slides[current].classList.remove("active");
+  current = (current + 1) % slides.length;
+  slides[current].classList.add("active");
+}, 5000);
+</script>
+
+</BaseLayout>

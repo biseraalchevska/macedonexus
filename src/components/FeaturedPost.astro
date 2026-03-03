@@ -6,9 +6,11 @@ interface Props {
   title: string;
   excerpt: string;
   slug: string;
+  lang: string; 
+  readMore: string;
 }
 
-const { image, title, excerpt, slug } = Astro.props;
+const { image, title, excerpt, slug, lang, readMore } = Astro.props;
 ---
 
 <section class="featured-post">
@@ -27,14 +29,13 @@ const { image, title, excerpt, slug } = Astro.props;
 
       <div class="featured-content">
         <h2>
-          <a href={`/blog/${slug}`}>{title}</a>
-        </h2>
+          <a href={`/${lang}/blog/${slug}`}>{title}</a>
+                </h2>
 
         <p>{excerpt}</p>
 
-        <a href={`/blog/${slug}`} class="read-more">
-          Read More →
-        </a>
+        <a href={`/${lang}/blog/${slug}`} class="read-more">          
+          {readMore}      </a>
       </div>
 
     </div>

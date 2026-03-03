@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SmallHero from "../../components/SmallHero.astro";
+import SectionSplit from "../../components/SectionSplit.astro";
+import woodcarv from "../../assets/woodcarv.png";
+import macWear from "../../assets/mac-wear.jpg";
+
+import { getLang } from "../../lib/lang";
+
+import { langs } from "../../lib/staticLangs";
+export async function getStaticPaths() {
+  return langs.map(lang => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang;
+const t = getLang(lang);
+---
+
+<BaseLayout title="Partner With Us">
+  <div class="about-top">
+
+    <SmallHero image={woodcarv} />
+
+    <SectionSplit
+title={t.partner.title}
+className="partner-variant"
+text={t.partner.description}
+image={macWear}
+/>
+</div>
+<section class="consultation">
+    <div class="consultation-inner">
+      <h2>{t.partner.form.title}</h2>
+  
+      <p class="consultation-sub">
+        {t.partner.form.description}
+      </p>
+  
+      <form
+      name="consultation"
+      method="POST"
+      data-netlify="true"
+      data-form="ajax"
+      class="consultation-form"
+    >
+    
+      <input type="hidden" name="form-name" value="consultation" />
+    
+      <input
+        name="full-name"
+        type="text"
+        placeholder={t.partner.form.name}
+        required
+      />
+    
+      <input
+        name="organization"
+        type="text"
+        placeholder={t.partner.form.org}
+      />
+    
+      <input
+        name="email"
+        type="email"
+        placeholder={t.partner.form.mail}
+        required
+      />
+    
+      <select name="partnership-type" required>
+        <option value="">{t.partner.form.partnership}</option>
+        <option>{t.partner.form.cultural}</option>
+        <option>{t.partner.form.language}</option>
+        <option>{t.partner.form.medical}</option>
+        <option>{t.partner.form.genes}</option>
+        <option>{t.partner.form.other}</option>
+      </select>
+    
+      <textarea
+        name="message"
+        placeholder={t.partner.form.message}
+        rows="5"
+        required
+      ></textarea>
+    
+      <button type="submit" class="btn-primary">
+        {t.partner.form.cta}
+      </button>
+    
+    </form>
+    </div>
+  </section>
+  
+
+</BaseLayout>

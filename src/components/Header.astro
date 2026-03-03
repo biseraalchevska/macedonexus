@@ -1,19 +1,33 @@
 ---
+import { getLang } from "../lib/lang";
+
+const lang = Astro.params.lang || "en";
+const t = getLang(lang);
+
+
 const links = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Partner With Us", href: "/partner" },
-  { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
+  { name: t.nav.home, href: "" },
+  { name: t.nav.about, href: "about" },
+  { name: t.nav.services, href: "services" },
+  { name: t.nav.partner, href: "partner" },
+  { name: t.nav.blog, href: "blog" },
+  { name: t.nav.contact, href: "contact" },
 ];
+const currentPath = Astro.url.pathname.replace(/^\/(en|mk|tr)/, "");
+const languages = [
+  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "mk", label: "Македонски", flag: "🇲🇰" },
+  { code: "tr", label: "Türkçe", flag: "🇹🇷" },
+];
+
+const current = languages.find(l => l.code === lang);
 ---
 
 <header class="site-header">
   <div class="header-inner">
 
-    <a href="/" class="logo">
-      <img src="/macedoninexu_logo_final_symbol.png" alt="Macedonexus Logo" />
+    <a href={`/${lang}`} class="logo">
+            <img src="/macedoninexu_logo_final_symbol.png" alt="Macedonexus Logo" />
     </a>
 
     <button class="burger" aria-label="Menu">
@@ -22,11 +36,34 @@ const links = [
       <span></span>
     </button>
 
+    <div class="header-right">
     <nav class="nav">
       {links.map(link => (
-        <a href={link.href}>{link.name}</a>
+        <a href={link.href ? `/${lang}/${link.href}` : `/${lang}`}>
+          {link.name}
+        </a>
       ))}
     </nav>
+
+    <div class="lang-dropdown">
+      <button class="lang-current" aria-expanded="false">
+        {current?.flag}
+      </button>
+
+    
+      <div class="lang-menu">
+        {languages.map(l => (
+          <a
+            href={`/${l.code}${currentPath}`}
+            class={l.code === lang ? "active" : ""}
+          >
+            <span>{l.flag}</span> {l.label}
+          </a>
+        ))}
+      </div>
+    </div>
+    </div>
+    
 
   </div>
 </header>
@@ -53,6 +90,27 @@ window.addEventListener('scroll', () => {
     nav.classList.remove('open');
     burger?.classList.remove('active');
     document.body.classList.remove('menu-open');
+  }
+});
+const dropdown = document.querySelector(".lang-dropdown");
+  const button = document.querySelector(".lang-current");
+
+  button?.addEventListener("click", () => {
+    dropdown?.classList.toggle("open");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!dropdown?.contains(e.target as Node)) {
+      dropdown?.classList.remove("open");
+    }
+  });
+  const header = document.querySelector(".site-header");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    header?.classList.add("scrolled");
+  } else {
+    header?.classList.remove("scrolled");
   }
 });
   </script>

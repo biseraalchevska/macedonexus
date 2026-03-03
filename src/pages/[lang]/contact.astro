@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SmallHero from "../../components/SmallHero.astro";
+import aboutHero from "../../assets/about.png";
+
+import { getLang } from "../../lib/lang";
+import { langs } from "../../lib/staticLangs";
+
+export async function getStaticPaths() {
+  return langs.map(lang => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang;
+const t = getLang(lang);
+---
+
+<BaseLayout title="Contact Us">
+
+  <SmallHero image={aboutHero} />
+
+  <section class="contact-intro">
+    <div class="contact-inner">
+      <h1>{t.contact.title}</h1>
+      <p>{t.contact.description}</p>
+    </div>
+  </section>
+
+  <section class="contact-methods">
+    <div class="methods-grid">
+  
+      {t.contact.methods.map((method:any) => {
+        let href = "#";
+  
+        if (method.type === "instagram") {
+          href = "https://instagram.com/macedonexus_";
+        }
+  
+        if (method.type === "whatsapp") {
+          href = "https://wa.me/905382871810";
+        }
+  
+        if (method.type === "email") {
+          href = "mailto:info@macedonexus.com";
+        }
+  
+        return (
+          <a href={href} target="_blank" rel="noopener" class="method-card">
+            <div class="method-icon"></div>
+            <h3>{method.label}</h3>
+            <h3>{method.value}</h3>
+            <p>{method.description}</p>
+          </a>
+        );
+      })}
+  
+    </div>
+  </section>
+
+
+  <section class="contact-form-section">
+    <div class="form-inner">
+      <h2>{t.contact.form.title}</h2>
+  
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        data-form="ajax"
+        class="contact-form"
+      >
+  
+        <input type="hidden" name="form-name" value="contact" />
+  
+        <input name="name" type="text" placeholder={t.contact.form.name} required />
+  
+        <input name="email" type="email" placeholder={t.contact.form.mail} required />
+  
+        <textarea
+          name="message"
+          placeholder={t.contact.form.message}
+          rows="6"
+          required
+        ></textarea>
+  
+        <button type="submit">{t.contact.form.cta}</button>
+  
+      </form>
+    </div>
+  </section>
+
+</BaseLayout>

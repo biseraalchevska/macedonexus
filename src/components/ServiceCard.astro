@@ -7,9 +7,10 @@ interface Props {
   title: string;
   description: string;
   link: string;
+  cta: string; 
 }
 
-const { icon, title, description, link } = Astro.props as Props;
+const { icon, title, description, link, cta} = Astro.props as Props;
 ---
 
 <div class="service-card">
@@ -29,6 +30,6 @@ const { icon, title, description, link } = Astro.props as Props;
   </p>
 
   <a href={link} class="service-link">
-    See More
+    {cta}
   </a>
 </div>

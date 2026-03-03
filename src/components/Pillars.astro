@@ -1,36 +1,20 @@
 ---
-const pillars = [
-  {
-    title: "Heritage Preservation",
-    description:
-      "Safeguarding language, traditions, and historical continuity across generations, ensuring cultural identity remains living and resilient."
-  },
-  {
-    title: "Diaspora Connection",
-    description:
-      "Strengthening bonds between Macedonian communities worldwide and their cultural homeland through meaningful engagement."
-  },
-  {
-    title: "Cultural Exchange",
-    description:
-      "Creating pathways for shared knowledge, collaboration, and cross-cultural dialogue rooted in mutual respect."
-  }
-];
+const { t } = Astro.props;
 ---
 
 <section class="pillars">
   <div class="pillars-inner">
 
     <div class="pillars-header">
-      <span class="pillars-label">CULTURAL PILLARS</span>
+      <span class="pillars-label">{t.home.pillars.title}</span>
       <div class="pillars-divider"></div>
     </div>
 
     <div class="pillar-grid">
-      {pillars.map((pillar) => (
+      {t.home.pillars.items.map((pillar:any) => (
         <div class="pillar">
           <h3>{pillar.title}</h3>
-          <p>{pillar.description}</p>
+          <p>{pillar.text}</p>
         </div>
       ))}
     </div>

@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SmallHero from "../../../components/SmallHero.astro";
+import FeaturedPost from "../../../components/FeaturedPost.astro";
+import BlogCard from "../../../components/BlogCard.astro";
+
+import { getCollection } from "astro:content";
+import { getLang } from "../../../lib/lang";
+import { langs } from "../../../lib/staticLangs";
+
+import splitImage from "../../../assets/split.jpg";
+
+export async function getStaticPaths() {
+  return langs.map(lang => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang!;
+const t = getLang(lang);
+
+const allPosts = await getCollection("blog");
+
+const posts = allPosts.filter(post =>
+  post.id.startsWith(`${lang}/`)
+);
+
+posts.sort((a, b) =>
+  new Date(b.data.date).getTime() -
+  new Date(a.data.date).getTime()
+);
+
+const cleanPosts = posts.map(post => ({
+  ...post,
+  cleanSlug: post.id.split("/")[1]
+}));
+
+const featured = cleanPosts[0];
+const others = cleanPosts.slice(1);
+---
+
+<BaseLayout title={t.blog.title} pageClass="journal-page">
+
+  <SmallHero image={splitImage} />
+
+  <section class="journal-intro">
+    <div class="journal-inner">
+      <h1>{t.blog.title}</h1>
+      <p>{t.blog.description}</p>
+    </div>
+  </section>
+
+  {featured && (
+    <section class="journal-featured">
+      <FeaturedPost
+        image={featured.data.image}
+        title={featured.data.title}
+        excerpt={t.blog.featuredCta}
+        slug={featured.cleanSlug}   
+        lang={lang}
+        readMore={t.blog.readMore}
+      />
+    </section>
+  )}
+
+  {others.length > 0 && (
+    <section class="journal-list">
+      <div class="journal-inner">
+        <h2 class="journal-section-title">
+          {t.blog.latest}
+        </h2>
+
+        <div class="journal-grid">
+          {others.map((post) => (
+            <BlogCard
+              image={post.data.image}
+              title={post.data.title}
+              excerpt={post.data.excerpt ?? t.blog.readMore}
+              slug={post.cleanSlug}   
+              lang={lang}
+              readMore={t.blog.readMore}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+</BaseLayout>

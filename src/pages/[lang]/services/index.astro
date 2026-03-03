@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SmallHero from "../../../components/SmallHero.astro";
+import ServiceCard from "../../../components/ServiceCard.astro";
+import splitImage from "../../../assets/split.jpg";
+import bookIcon from "../../../assets/book.png";
+import lessonsIcon from "../../../assets/lessons.png";
+import mountainsIcon from "../../../assets/mountains.png";
+import familyTreeIcon from "../../../assets/family_tree.png";
+import hospitalIcon from "../../../assets/hospital.png";
+import citizenshipIcon from "../../../assets/citizenship.png";
+import investmentIcon from "../../../assets/investement.png";
+import { getLang } from "../../../lib/lang";
+
+import { langs } from "../../../lib/staticLangs";
+export async function getStaticPaths() {
+  return langs.map(lang => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang;
+const t = getLang(lang);
+const icons = {
+  book: bookIcon,
+  lessons: lessonsIcon,
+  mountains: mountainsIcon,
+  familyTree: familyTreeIcon,
+  hospital: hospitalIcon,
+  citizenship: citizenshipIcon,
+  investement: investmentIcon,
+};
+---
+
+<BaseLayout title="Services">
+   <SmallHero 
+  className="blog-variant"
+  image={splitImage}
+    /> 
+
+    <section class="contact-intro">
+        <div class="contact-inner">
+          <h1>{t.services.title}</h1>
+          <p>{t.services.description}</p>
+        </div>
+      </section>
+
+    <section class="services-section">
+
+      <div class="services-grid">
+        {t.services.items.map((service:any) => {
+          const iconKey = service.icon as keyof typeof icons;
+        
+          return (
+            <ServiceCard
+              icon={icons[iconKey]}
+              title={service.title}
+              description={service.description}
+              link={`/${lang}/services/${service.slug}`}
+              cta={t.services.cta}
+            />
+          );
+        })}
+      </div>
+    </section>
+
+</BaseLayout>
+

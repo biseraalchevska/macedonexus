@@ -35,6 +35,45 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+body[data-lang="tr"] .split-text p {
+  font-size: 1.45rem;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+.service-list {
+  margin: 0rem 0 0.5rem;
+  padding-left: 1rem;
+  list-style: none; 
+}
+
+.service-list li {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.service-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #8c6b4f; 
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+.service-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  margin-top: 0rem;
+  margin-bottom: 0.6rem;
+}
+
 /*hero*/
 .hero {
     position: relative;
@@ -47,6 +86,7 @@ html, body {
   
     color: white;
   }
+
     
   .hero-overlay {
     position: absolute;
@@ -142,7 +182,14 @@ html, body {
       transform: translateY(0);
     }
   }
+  .hero-image {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
   
+  .hero-image.loaded {
+    opacity: 1;
+  }
   /* landing pg mission */
 
 .mission {
@@ -725,13 +772,20 @@ html, body {
   
   /* HEADER */
   .site-header {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
     padding: 0.5rem 3.5rem;
     background: rgba(10, 28, 47, 0.3);
     backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+
+  }
+
+  .site-header.scrolled {
+    background: rgba(10, 28, 47, 0.7);
+    backdrop-filter: blur(12px);
   }
   
   .header-inner {
@@ -740,6 +794,16 @@ html, body {
     justify-content: space-between;
     width: 100%;
   }
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+}
   
   .logo img {
     height: 44px;
@@ -1623,6 +1687,82 @@ body.menu-open {
   }
 }
 
+/* ===== Language Dropdown Container ===== */
+.lang-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* ===== Current Flag Button ===== */
+.lang-current {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 0.4rem;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.lang-current:hover {
+  transform: scale(1.05);
+}
+
+/* ===== Dropdown Menu ===== */
+.lang-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 10px;
+
+  background: white;
+  border-radius: 12px;
+  padding: 0.4rem 0;
+
+  min-width: 180px;
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: all 0.25s ease;
+  z-index: 1000;
+}
+
+.lang-dropdown.open .lang-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-menu a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+
+  color: #2c2c2c;
+  transition: background 0.2s ease;
+}
+
+.lang-menu a:hover {
+  background: #f5f2ec;
+}
+
+.lang-menu a.active {
+  font-weight: 600;
+}
+
+.lang-menu a:hover {
+  border-radius: 6px;
+}
+
 /* mobile */
 
 @media (max-width: 768px) {
@@ -1650,6 +1790,7 @@ body.menu-open {
     display: block;
     object-fit: cover;
   }
+  
 
   
   .nav {

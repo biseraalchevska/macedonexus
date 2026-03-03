@@ -6,12 +6,21 @@ interface Props {
   title: string;
   excerpt: string;
   slug: string;
+  lang: string;
+  readMore: string;
 }
 
-const { image, title, excerpt, slug } = Astro.props;
+const {
+  image,
+  title,
+  excerpt,
+  slug,
+  lang,
+  readMore
+} = Astro.props as Props;
 ---
 
-<a href={`/blog/${slug}`} class="blog-card">
+<a href={`/${lang}/blog/${slug}`} class="blog-card">
   <Image
     src={image}
     alt={title}
@@ -22,6 +31,6 @@ const { image, title, excerpt, slug } = Astro.props;
   <div class="blog-card-content">
     <h3>{title}</h3>
     <p>{excerpt}</p>
-    <span class="read-more">Read More →</span>
+    <span class="read-more">{readMore} →</span>
   </div>
 </a>

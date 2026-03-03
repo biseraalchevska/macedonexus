@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SmallHero from "../../../components/SmallHero.astro";
+
+import { getCollection } from "astro:content";
+import { langs } from "../../../lib/staticLangs";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const paths = [];
+
+  for (const lang of langs) {
+    const filtered = posts.filter(post =>
+      post.id.startsWith(`${lang}/`)
+    );
+
+    for (const post of filtered) {
+      const cleanSlug = post.id.split("/")[1];
+
+      paths.push({
+        params: {
+          lang,
+          slug: cleanSlug,
+        },
+        props: { post },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title}>
+  <SmallHero image={post.data.image} />
+
+  <section class="blog-post-wrapper">
+    <article class="blog-post">
+      <h1>{post.data.title}</h1>
+      <Content />
+    </article>
+  </section>
+</BaseLayout>
