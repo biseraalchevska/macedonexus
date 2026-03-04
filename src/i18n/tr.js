@@ -56,7 +56,7 @@ export default {
       },
       {
         name: "Melani",
-        role: "Dil Eğitmeni",
+        role: "DİL EĞİTMENİ",
         bio: "Yeminli Makedonca-Türkçe tercümandır. Türkçe ve Makedonca öğrenenler için dil eğitimi vermekte olup derslerinde pratik iletişim ve kültürel bağlamı esas almaktadır."
       },
       {
@@ -263,14 +263,17 @@ export default {
   nav: {
     home: "Ana Sayfa",
     about: "Hakkımızda",
-    services: "Hizmetler",
-    partner: "İşbirliği",
+    services: "Hİzmetler",
+    partner: "İŞBİRLİĞİ",
     blog: "Blog",
-    contact: "İletişim",
+    contact: "İLETİŞİM",
   },
   footer:{
     explore:"Keşfet",
     engage:"Katıl",
     connect:"Bize Ulaş",
+    services: "Hizmetler",
+    partner: "İşbirliği",
+    contact: "İletişim",
   }
 };

@@ -4,6 +4,7 @@ import { getLang } from "../lib/lang";
 const lang = Astro.params.lang || "en";
 const t = getLang(lang);
 const year = new Date().getFullYear();
+
 ---
 
 <footer class="site-footer">
@@ -18,17 +19,17 @@ const year = new Date().getFullYear();
         <div class="footer-column">
           <h4>{t.footer.explore}</h4>
           <ul>
-            <li><a href="/about">{t.nav.about}</a></li>
-            <li><a href="/services">{t.nav.services}</a></li>
-            <li><a href="/blog">{t.nav.blog}</a></li>
+            <li><a href={`/${lang}/about`}>{t.nav.about}</a></li>
+            <li><a href={`/${lang}/services`}>{t.footer.services}</a></li>
+            <li><a href={`/${lang}/blog`}>{t.nav.blog}</a></li>
           </ul>
         </div>
       
         <div class="footer-column">
           <h4>{t.footer.engage}</h4>
           <ul>
-            <li><a href="/partner">{t.nav.partner}</a></li>
-            <li><a href="/contact">{t.nav.contact}</a></li>
+            <li><a href={`/${lang}/partner`}>{t.footer.partner}</a></li>
+            <li><a href={`/${lang}/contact`}>{t.footer.contact}</a></li>
           </ul>
         </div>
       
