@@ -74,6 +74,16 @@ body[data-lang="tr"] .split-text p {
   margin-bottom: 0.6rem;
 }
 
+.flag-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+.lang-menu img {
+  border-radius: 50%;
+}
+
 /*hero*/
 .hero {
     position: relative;
@@ -838,14 +848,15 @@ body[data-lang="tr"] .split-text p {
     flex-direction: column;
     overflow: hidden;
   }
+
     
   .section-split {
     flex: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: calc(100vh - 40vh - var(--header-height));
-    overflow: hidden;
+    min-height: 0;
   }
+
   
   .split-text {
     background: #f5f2ec;

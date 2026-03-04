@@ -274,6 +274,9 @@ export default {
     explore:"Explore",
     engage:"Engage",
     connect:"Connect",
+    services: "Services",
+    partner: "Partner With Us",
+    contact: "Contact",
   }
 
 };
