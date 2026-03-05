@@ -1,0 +1,9 @@
+---
+if (import.meta.env.DEV) {
+  return Astro.redirect("/en");
+}
+---
+
+<script>
+  window.location.href = "/en";
+</script>

@@ -88,6 +88,7 @@ body[data-lang="tr"] .split-text p {
 .hero {
     position: relative;
     min-height: 100vh;
+    /* min-height: calc(100vh - var(--header-height)); */
     width: 100%;
   
     background-size: cover;
@@ -843,24 +844,27 @@ body[data-lang="tr"] .split-text p {
   
   
   .about-top {
-    height: 100vh;
+    /* height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: hidden; */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
     
   .section-split {
-    flex: 1;
+    /* flex: 1; */
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 0;
+    /* min-height: 0; */
   }
 
   
   .split-text {
     background: #f5f2ec;
-    padding: 5rem;
+    padding: clamp(3rem, 5vw, 5rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -868,7 +872,7 @@ body[data-lang="tr"] .split-text p {
   
   .split-text h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     letter-spacing: 3px;
     color: #8b6a3f;
     margin: 0 0 2rem 0;
@@ -876,15 +880,16 @@ body[data-lang="tr"] .split-text p {
   
   .split-text p {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    line-height: 1.7;
+    font-size: 1.4rem;
+    line-height: 1.6;
     color: #2c2c2c;
     margin: 0;
   }
   
   .split-image {
     height: 100%;
-    overflow: hidden;
+    /* height: 100%;
+    overflow: hidden; */
   }
   
   /* .split-image img {
